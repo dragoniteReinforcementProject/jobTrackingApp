@@ -1,0 +1,6 @@
+dist/*
+webpack.config.js
+babel.config.json
+node_modules
+package-lock.json
+bundle.js
