@@ -8,8 +8,7 @@
   "extends": [
     "plugin:react/recommended",
     "standard-with-typescript",
-    "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "overrides": [],
@@ -18,7 +17,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "@typescript-eslint/triple-slash-reference": "off"
+    "@typescript-eslint/triple-slash-reference": "off",
+    "semi": 0,
+    "@typescript-eslint/semi": 0
   },
   "settings": {
     "react": {"version": "detect"}

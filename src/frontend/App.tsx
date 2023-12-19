@@ -1,14 +1,11 @@
-import React from "react";
-
-import Home from './routes/Home'
-
-
+import React from 'react';
 import './styles/stylesheet.scss'
+import { Home, Proto } from './routes'
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <div className='container'>
-      <Home />
+      <Proto />
     </div>
   );
 };

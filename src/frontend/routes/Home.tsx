@@ -1,25 +1,19 @@
 import React from 'react';
 import styles from '../styles/Home.module.scss';
 
-import JobColumn from '../components/JobColumn';
+import { JobColumn } from '../components';
 
-const Home = () => {
+const Home = (): JSX.Element => {
+  const columnHeaders = ['Wishlist', 'Applied', 'Phone', 'Interview', 'Offer', 'Rejected']
 
-  const columns = ['Wishlist', 'Applied', 'Phone', 'Interview', 'Offer', 'Rejected']
-
-  const headers = columns.map((label, i) => {
-    const addedStyles = {
-      gridColumn: `${i}/${i+1}`
-    }
-    
-
+  const columns = columnHeaders.map((label, i) => {
     return (
-      <div 
-        className={styles.jobsHeader}
-        style={addedStyles}
-      >
-        <h2>{label}</h2>
-      </div>
+      <JobColumn
+        key={`jobColumn_${i}x${i + 1}`}
+        columnStart={i}
+        columnEnd={i + 1}
+        header={label}
+      />
     );
   })
 
@@ -33,7 +27,7 @@ const Home = () => {
         <h2>V grid</h2>
       </div>
       <div className={styles.jobsGrid}>
-        {headers}
+        {columns}
       </div>
     </div>
   )
