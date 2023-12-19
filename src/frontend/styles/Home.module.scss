@@ -1,0 +1,19 @@
+@use 'variables';
+
+.test {
+    color: variables.$red;
+}
+
+.jobsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: [top header-start] 100px [header-stop jobs-start] 1fr [jobs-end bottom];
+}
+
+.jobsHeader {
+    grid-row: header-start / header-end;
+}
+
+.jobColumn {
+    grid-row: jobs-start / jobs-end;
+}

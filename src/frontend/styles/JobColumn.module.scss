@@ -1,0 +1,14 @@
+.colContainer {
+    grid-row: jobs-start / jobs-end;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.colHeader {
+    height: 100px;
+}
+
+.jobTray {
+
+}
