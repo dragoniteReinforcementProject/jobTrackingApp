@@ -69,7 +69,7 @@ const config  = {
       ]
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js']
+      extensions: ['.tsx', '.ts', '.js', '.css', '.scss']
     },
     output: {
       filename: 'bundle.js',

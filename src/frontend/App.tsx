@@ -1,9 +1,14 @@
 import React from "react";
 
+import Home from './routes/Home'
+
+
+import './styles/stylesheet.scss'
+
 const App = () => {
   return (
-    <div>
-      <h1> Hello world!</h1>
+    <div className='container'>
+      <Home />
     </div>
   );
 };
