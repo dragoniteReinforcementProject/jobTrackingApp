@@ -18,7 +18,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "@typescript-eslint/triple-slash-reference": "off"
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/no-var-requires":0,
+    "n/handle-callback-err":0
   },
   "settings": {
     "react": {"version": "detect"}
