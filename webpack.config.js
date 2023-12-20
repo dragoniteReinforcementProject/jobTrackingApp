@@ -63,13 +63,13 @@ const config  = {
           use: [stylesHandler, 'css-loader', 'sass-loader'],
         },
         {
-          test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+          test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|svg)$/i,
           type: 'asset',
         },
       ]
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js']
+      extensions: ['.tsx', '.ts', '.js', '.css', '.scss']
     },
     output: {
       filename: 'bundle.js',
