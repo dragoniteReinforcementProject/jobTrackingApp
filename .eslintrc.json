@@ -13,7 +13,8 @@
   "parser": "@typescript-eslint/parser",
   "overrides": [],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "allowNullableBoolean": true
   },
   "plugins": ["react", "prettier"],
   "rules": {
