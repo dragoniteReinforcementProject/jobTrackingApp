@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Controller = require('./controllers.js');
+const databaseControllers = require('./controllers/databaseControllers.js');
 const path = require('path');
 
 const app = express();
@@ -17,13 +17,22 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../frontend/index.tsx'))
 })
 
-app.post('/login', Controller.verifyUser, (req, res) => {
-  const authenticatedUser = req.user;
+app.post('/test', (req, res)=> {
+  res.status(200).json(req.body);
+})
+
+app.post('/login', databaseControllers.verifyUser, (req, res) => {
+  const authenticatedUser = res.locals.user;
   res.status(200).json({ message: 'Login successful', user: authenticatedUser })
 });
 
-app.post('/register', Controller.addUser, (req, res) => {
+app.post('/register', databaseControllers.addUser, (req, res) => {
   res.status(200).json({ message: 'User successfully created!' })
 })
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send(`Server Errror: ${err.message}`);
+});
 
 app.listen(PORT, () => { console.log(`Server is listening on port ${PORT}`) });

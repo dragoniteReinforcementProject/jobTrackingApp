@@ -33,7 +33,7 @@ const Login = (): JSX.Element => {
       </div>
       <div className='inputfield-container'>
         <input type='text' placeholder='Enter Your Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type='text' placeholder='Enter Your Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <input type='password' placeholder='Enter Your Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
       </div>
       <div className='login-buttons-container'>
         <a href='#'>Sign Up</a>
