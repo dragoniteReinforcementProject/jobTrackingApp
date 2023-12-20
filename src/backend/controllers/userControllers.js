@@ -3,10 +3,11 @@ const db = require('../models/accountModels.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const databaseControllers = {};
+const userControllers = {};
 
-databaseControllers.createTable = (req, res, next) => {
-  const dbQuery = `CREATE TABLE ${req.userName}_jobs (job_title text, company text, date date, link text, color integer, notes text, location text, deadline date, salary text, job_application_status text);`
+userControllers.createTable = (req, res, next) => {
+  console.log(req.body.userName)
+  const dbQuery = `CREATE TABLE ${req.body.userName}_jobs (job_title text, company text, date date, link text, color integer, notes text, location text, deadline date, salary text, job_application_status text);`
   db.query(dbQuery)
     .then(result => {
       console.log('Table created');
@@ -20,7 +21,7 @@ databaseControllers.createTable = (req, res, next) => {
     });
 };
 
-databaseControllers.addUser = (req, res, next) => {
+userControllers.addUser = (req, res, next) => {
   const userName = req.body.userName;
   const realName = req.body.userRealName;
   const password = req.body.password;
@@ -46,8 +47,23 @@ databaseControllers.addUser = (req, res, next) => {
   });
 }
 
-databaseControllers.fetchTable = (req, res, next) => {
-  const dbQuery = `SELECT * FROM USERS WHERE user_name = ${req.userName};`;
+userControllers.addJob = (req,res,next)=>{
+  const dbQuery = `INSERT INTO ${req.body.userName}_jobs (job_title, company, date, link, color, notes, location, deadline, salary, job_application_status) VALUES (${req.body.jobTitle}, ${req.body.company}, ${req.body.date}, ${req.body.link}, ${req.body.color}, ${req.body.notes}, ${req.body.location}, ${req.body.deadline}, ${req.body.salary}, ${req.body.status});`
+  db.query(dbQuery)
+  .then(result=>{
+    console.log('Job added');
+    next();
+  })
+  .catch(err=>{
+    return next({
+      log: 'Error adding jobs row.',
+      message: {err:'Failed to add jobs row.'}
+    })
+  })
+}
+
+userControllers.fetchTable = (req, res, next) => {
+  const dbQuery = `SELECT * FROM ${req.body.userName}_jobs`;
   db.query(dbQuery)
     .then(result => {
       console.log('DB Queried');
@@ -62,8 +78,8 @@ databaseControllers.fetchTable = (req, res, next) => {
     });
 };
 
-databaseControllers.fetchJobsTable = (req, res, next) => {
-  const dbQuery = `SELECT * FROM jobs${req.userID};`;
+userControllers.fetchJobsTable = (req, res, next) => {
+  const dbQuery = `SELECT * FROM jobs${req.body.userName};`;
   db.query(dbQuery)
     .then(result => {
       console.log('DB Queried');
@@ -78,7 +94,7 @@ databaseControllers.fetchJobsTable = (req, res, next) => {
     });
 };
 
-databaseControllers.verifyUser = async (req, res, next) => {
+userControllers.verifyUser = async (req, res, next) => {
   // check for undefined
   const userName = req.body.userName;
   const password = req.body.password;
@@ -117,4 +133,4 @@ databaseControllers.verifyUser = async (req, res, next) => {
   }
 }
 
-module.exports = databaseControllers;
+module.exports = userControllers;
