@@ -49,7 +49,11 @@ app.post('/updateJobs', userControllers.addJob, (req, res)=>{
 "status":"'Rejected'"
 }
    */
-  res.status(200).json(req.body)
+  res.status(200).json({message:'Jobs added succesfully!'})
+})
+app.get('/fetchJobs', userControllers.fetchTable, (req, res)=>{
+  console.log(res.locals.tableData)
+  res.status(200).json(res.locals.tableData);
 })
 
 app.use((err, req, res, next) => {

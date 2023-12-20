@@ -63,7 +63,7 @@ userControllers.addJob = (req,res,next)=>{
 }
 
 userControllers.fetchTable = (req, res, next) => {
-  const dbQuery = `SELECT * FROM USERS WHERE user_name = ${req.userName};`;
+  const dbQuery = `SELECT * FROM ${req.body.userName}_jobs`;
   db.query(dbQuery)
     .then(result => {
       console.log('DB Queried');
