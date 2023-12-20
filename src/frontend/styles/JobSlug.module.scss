@@ -1,0 +1,94 @@
+@use 'variables';
+@use 'mixins';
+
+/* CONTAINER */
+.jobBorder {
+    @include mixins.border;
+    background-color: #FFFFFC;
+    width: 315px;
+    width: fit-content;
+    &:hover {
+        svg {
+            visibility: visible;
+        }
+    }
+}
+
+.jobContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    
+}
+
+/* ELEMENTS */
+.companyLogo {
+    
+    align-self: flex-start;
+}
+
+.jobText {
+    padding: 0px 10px;
+    width: 185px;
+    
+    /*align-self: flex-start;*/
+}
+
+.jobTitle {
+    margin: 0;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    
+}
+
+.jobCompany {
+    font-weight: bolder;
+    font-size: 0.8em;
+    margin: 0;
+}
+.timeString {
+    font-style: italic;
+    font-size: 0.6em;
+}
+
+
+.iconBar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    svg {
+        visibility: hidden;
+        padding: 5px 0px;
+    }
+}
+
+
+
+
+/* UTILITY */
+.bgRed {
+    background-color: variables.$red;
+}
+.bgOrange {
+    background-color: variables.$orange;
+}
+.bgYellow {
+    background-color: variables.$yellow;
+}
+.bgGreen {
+    background-color: variables.$green;
+}
+.bgTeal {
+    background-color: variables.$teal;
+}
+.bgBlue {
+    background-color: variables.$blue;
+}
+.bgPurple {
+    background-color: variables.$purple;
+}
+.bgPink {
+    background-color: variables.$pink;
+}
+

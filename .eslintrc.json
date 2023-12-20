@@ -13,13 +13,16 @@
   "parser": "@typescript-eslint/parser",
   "overrides": [],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "allowNullableBoolean": true
   },
   "plugins": ["react", "prettier"],
   "rules": {
     "@typescript-eslint/triple-slash-reference": "off",
     "semi": 0,
-    "@typescript-eslint/semi": 0
+    "@typescript-eslint/semi": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "n/handle-callback-err)":0,
   },
   "settings": {
     "react": {"version": "detect"}
