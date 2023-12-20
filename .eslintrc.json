@@ -19,7 +19,9 @@
   "rules": {
     "@typescript-eslint/triple-slash-reference": "off",
     "semi": 0,
-    "@typescript-eslint/semi": 0
+    "@typescript-eslint/semi": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "n/handle-callback-err)":0,
   },
   "settings": {
     "react": {"version": "detect"}
