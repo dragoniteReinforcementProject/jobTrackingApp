@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles/stylesheet.scss'
-import { Home, Proto } from './routes'
+import { Home, Proto, Login } from './routes'
 
 const App = (): JSX.Element => {
   return (
-    <div className='container'>
-      <Proto />
+    <div className='main-container'>
+      {/* <Proto /> */}
+      <Login />
     </div>
   );
 };

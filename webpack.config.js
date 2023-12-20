@@ -77,7 +77,7 @@ const config  = {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'src', 'frontend', 'index.html'),
+        template: path.join(__dirname, 'src', 'index.html'),
       }),
       
     ]
