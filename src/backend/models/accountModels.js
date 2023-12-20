@@ -4,11 +4,12 @@ const PG_URI =
 const pool = new Pool({
   connectionString: PG_URI,
 });
-console.log("DB Queried");
+console.log("DB Connected");
+
 module.exports = {
-  query: (text, params, callback) => {
+  query: (text, params) => {
     console.log("executed query", text);
-    return pool.query(text, params, callback);
+    return pool.query(text, params);
   },
 };
 // jobs table, settings table, user table, actions table?
