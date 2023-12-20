@@ -1,11 +1,7 @@
 import React from 'react';
 import style from '../styles/JobColumn.module.scss';
+import { JobColumnProps } from '../types';
 
-interface JobColumnProps {
-  columnStart: number
-  columnEnd: number
-  header: string
-};
 
 const JobColumn = ({ columnStart, columnEnd, header }: JobColumnProps): JSX.Element => {
   const addedStyle = {

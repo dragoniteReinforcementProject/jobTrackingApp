@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Register = () => {
-
+const Register = ():JSX.Element => {
+  return(
+    <div>Register</div>
+  );
 }
 
 export default Register;

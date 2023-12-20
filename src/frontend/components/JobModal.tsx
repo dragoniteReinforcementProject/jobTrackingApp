@@ -4,7 +4,7 @@ import styles from '../styles/JobModal.module.scss'
 import type { ChangeEventHandler } from 'react';
 import { format } from 'date-fns';
 import { Save, X } from 'lucide-react';
-
+import { JobStatus, JobProps } from '../types';
 import JobSlug from '../components/JobSlug';
 
 const sentenceCase = (str: string): string => {
@@ -17,30 +17,6 @@ const tagCase = (str: string): string => {
     '-' + char.toLowerCase())
 }
 
-type _JobStatus = 'Wishlist' | 'Applied' | 'Phone' | 'Interview' | 'Offer' | 'Rejected';
-
-enum JobStatus {
-  wishlist = 'Wishlist',
-  applied = 'Applied',
-  phone = 'Phone',
-  interview = 'Interview',
-  offer = 'Offer',
-  rejected = 'Rejected'
-}
-
-interface CompanyProps {
-  [index: string]: string | Date | number
-  jobTitle: string
-  company: string
-  dateAdded: Date
-  link: string
-  color: number
-  notes: string
-  location: string
-  deadline: Date
-  salary: string
-  jobStatus: JobStatus
-}
 
 const Proto = ({
   jobTitle,
@@ -53,7 +29,7 @@ const Proto = ({
   salary,
   jobStatus,
   notes
-}: CompanyProps
+}: JobProps
 ): JSX.Element => {
   // state
   const [_jobTitle, setJobTitle] = useState(jobTitle);
