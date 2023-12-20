@@ -1,10 +1,12 @@
 const { json } = require('express');
 const db = require('../models/accountModels.js');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const databaseControllers = {};
 
 databaseControllers.createTable = (req, res, next) => {
-  const dbQuery = `CREATE TABLE ${req.userName}Jobs (job_name text, job_application_status text, job_type text);`;
+  const dbQuery = `CREATE TABLE ${req.userName}_jobs (job_title text, company text, date date, link text, color integer, notes text, location text, deadline date, salary text, job_application_status text);`
   db.query(dbQuery)
     .then(result => {
       console.log('Table created');
@@ -19,7 +21,17 @@ databaseControllers.createTable = (req, res, next) => {
 };
 
 databaseControllers.addUser = (req, res, next) => {
-  const dbQuery = `INSERT INTO USERS (user_name, user_real_name, user_password) VALUES (${req.userName}, ${req.userRealName}, ${req.password});`;
+  const userName = req.body.userName;
+  const realName = req.body.userRealName;
+  const password = req.body.password;
+  if (!userName || !realName || !password) {
+    return next(new Error(`One of the parameters are undefined, user=${userName}, realname=${realName}, password=${password}`))
+  }
+  bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
+    if (err instanceof Error) {
+      next(err);
+    }
+  const dbQuery = `INSERT INTO USERS (user_name, user_real_name, user_password) VALUES (${req.userName}, ${req.userRealName}, ${hashedPassword});`;
   db.query(dbQuery)
     .then(result => {
       console.log('User added');
@@ -31,7 +43,8 @@ databaseControllers.addUser = (req, res, next) => {
         message: { err: 'Failed to create user.' }
       });
     });
-};
+  });
+}
 
 databaseControllers.fetchTable = (req, res, next) => {
   const dbQuery = `SELECT * FROM USERS WHERE user_name = ${req.userName};`;
@@ -64,3 +77,44 @@ databaseControllers.fetchJobsTable = (req, res, next) => {
       });
     });
 };
+
+databaseControllers.verifyUser = async (req, res, next) => {
+  // check for undefined
+  const userName = req.body.userName;
+  const password = req.body.password;
+  if (!userName || !password) {
+    return next(new Error(`One of the parameters are undefined, userName=${userName}, password=${password}`))
+  }
+  console.log(userName, password)
+  try {
+    // Fetch the user from the database based on the provided username
+    const query = 'SELECT user_name, user_password FROM USERS WHERE user_name = $1';
+    const result = await db.query(query, [userName]);
+
+    if (result.rows.length === 0) {
+      return next(new Error(`result.rows.length is equal to 0`))
+    }
+
+    const user = result.rows[0];
+    const hashedPassword = user.user_password;
+    console.log("This is in verifyUser: ", user, password, hashedPassword);
+
+    // Compare the provided password with the hashed password from the database
+    let passwordMatch = await bcrypt.compare(password, hashedPassword);
+
+    if (passwordMatch) {
+      // Passwords successfully match and the user is authenticated
+      res.locals.user = user;
+      next();
+    } else {
+      // Passwords do not match, authentication failed
+      return next(new Error(`Password does not match: ${passwordMatch}`))
+     
+    }
+  } catch (error) {
+    console.error('Error durring password comparison:', error);
+    return next(error);
+  }
+}
+
+module.exports = databaseControllers;
