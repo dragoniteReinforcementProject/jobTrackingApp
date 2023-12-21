@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const databaseControllers = require('./controllers/databaseControllers.js');
+const userControllers = require('./controllers/userControllers.js');
 const path = require('path');
 const cors = require('cors')
 const app = express();
@@ -21,13 +21,39 @@ app.post('/test', (req, res)=> {
   res.status(200).json(req.body);
 })
 
-app.post('/login', databaseControllers.verifyUser, (req, res) => {
+app.post('/login', userControllers.verifyUser, (req, res) => {
   const authenticatedUser = res.locals.user;
   res.status(200).json({ message: 'Login successful', user: authenticatedUser })
 });
 
-app.post('/register', databaseControllers.addUser, (req, res) => {
+app.post('/register', userControllers.addUser, (req, res) => {
   res.status(200).json({ message: 'User successfully created!' })
+})
+app.post('/createJobs', userControllers.createTable, (req, res)=>{
+  //req.body.userName example: Code_Monkey NOT 'Code_Monkey'
+  res.status(200).json({ message: 'Table created successfully!'})
+})
+app.post('/updateJobs', userControllers.addJob, (req, res)=>{
+  /**
+   * Example use: no single quotes on userName, single quotes on all other strings.
+   * {"userName":"Mode_Conkey",
+"jobTitle":"'Code Monkey'",
+"company":"'Googol'",
+"date":"'2023-12-20'",
+"link":"'www.google.com'",
+"color":150,
+"notes":"'I am tired'",
+"location":"'Deep underground'",
+"deadline":"'2024-01-01'",
+"salary":"'USD$ 7.50'",
+"status":"'Rejected'"
+}
+   */
+  res.status(200).json({message:'Jobs added succesfully!'})
+})
+app.get('/fetchJobs', userControllers.fetchTable, (req, res)=>{
+  console.log(res.locals.tableData)
+  res.status(200).json(res.locals.tableData);
 })
 
 app.use((err, req, res, next) => {
