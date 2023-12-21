@@ -2,14 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userControllers = require('./controllers/userControllers.js');
 const path = require('path');
-
+const cors = require('cors')
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors())
 // serve css and js files
 app.use(express.static(path.resolve(__dirname, '../frontend')));
 

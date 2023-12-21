@@ -1,13 +1,52 @@
 import React from 'react';
 import './styles/stylesheet.scss'
-import { Home, Proto, Login } from './routes'
+
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
+import {Home, Login, Logout, Register, Settings, NotFound, Proto} from './routes'
+
+import CenteredWrapper from './components/CenteredWrapper';
+
+
+const router = createBrowserRouter([
+
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/logout",
+    element: <Logout />
+  },
+  {
+    path: "/register",
+    element: <Register />
+  },
+  {
+    path: "/",
+    element: <Settings />
+  },
+  {
+    path: "/proto",
+    element: <Proto />
+  },
+  {
+    path: "*",
+    element: <NotFound />
+  },
+]);
 
 const App = (): JSX.Element => {
   return (
-    <div className='main-container'>
-      {/* <Proto /> */}
-      <Login />
-    </div>
+    <CenteredWrapper>
+      <RouterProvider router={router} />
+    </CenteredWrapper>
   );
 };
 

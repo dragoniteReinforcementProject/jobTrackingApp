@@ -3,55 +3,13 @@
 
 html {
     font-family: 'Roboto', monospace;
+    
 }
-body {
+html, body {
+    height: 100%;
     margin: 0px;
 }
 
-.container {
-    
-}
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-}
-
-.login-container {
-    border: 1px solid black;
-    height: 65vh;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: tan;
-    justify-content: center;
-}
-
-.logo-container {
-    border: 1px solid black;
-    height: 20vh;
-    width: 20vw;
-    align-items: center;
-    padding-bottom: 25px;
-}
-
-.inputfield-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.login-buttons-container {
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 50px;
-    width: 150px;
+div#root {
+    height: 100%
 }

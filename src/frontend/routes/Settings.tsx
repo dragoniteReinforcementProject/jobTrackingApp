@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Settings = () => {
-
+const Settings = (): JSX.Element => {
+  return(
+    <div>Settings</div>
+  );
 }
 
 export default Settings;

@@ -4,14 +4,9 @@ import style from '../styles/JobSlug.module.scss';
 import Google from '../assets/google.png';
 import { ExternalLink, Trash } from 'lucide-react';
 import { formatDistanceToNowStrict } from 'date-fns';
+import type { JobProps } from '../types'
 
-interface CompanyProps {
-  jobTitle: string
-  company: string
-  dateAdded: Date
-  link: string
-  color: number
-}
+
 /*
  const obj = {
     jobTitle: 'Backend Developer Extra cool mega props for my guy',
@@ -23,7 +18,7 @@ interface CompanyProps {
 */
 
 const JobSlug = (
-  { jobTitle, company, dateAdded, link, color }: CompanyProps
+  { jobTitle, company, dateAdded, link, color }: JobProps
 ): JSX.Element => {
   const colors = [style.bgRed, style.bgOrange, style.bgYellow, style.bgGreen, style.bgTeal, style.bgBlue, style.bgPurple, style.bgPink];
 
