@@ -28,3 +28,7 @@ export interface JobProps {
   salary: string
   jobStatus: JobStatus
 }
+
+interface WrapperProps {
+  children: JSX.Element | JSX.Element[]
+}

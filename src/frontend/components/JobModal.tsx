@@ -5,7 +5,7 @@ import type { ChangeEventHandler } from 'react';
 import { format } from 'date-fns';
 import { Save, X } from 'lucide-react';
 import { JobStatus, JobProps } from '../types';
-import JobSlug from '../components/JobSlug';
+import JobSlug from './JobSlug';
 
 const sentenceCase = (str: string): string => {
   let output = str.replaceAll(/[A-Z]/g, char => ' ' + char);

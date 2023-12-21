@@ -20,7 +20,8 @@ databaseControllers.createTable = (req, res, next) => {
     });
 };
 
-databaseControllers.addUser = (req, res, next) => {
+databaseControllers.addUser = async (req, res, next) => {
+  console.log(req.body)
   const userName = req.body.userName;
   const realName = req.body.userRealName;
   const password = req.body.password;
@@ -31,13 +32,14 @@ databaseControllers.addUser = (req, res, next) => {
     if (err instanceof Error) {
       next(err);
     }
-  const dbQuery = `INSERT INTO USERS (user_name, user_real_name, user_password) VALUES (${req.userName}, ${req.userRealName}, ${hashedPassword});`;
+  const dbQuery = `INSERT INTO USERS (user_name, user_real_name, user_password) VALUES ('${userName}', '${realName}', '${hashedPassword}');`;
   db.query(dbQuery)
     .then(result => {
       console.log('User added');
       next();
     })
     .catch(err => {
+      console.error(err)
       return next({
         log: 'Error adding user',
         message: { err: 'Failed to create user.' }

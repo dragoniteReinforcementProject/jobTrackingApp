@@ -7,9 +7,11 @@ import {
 } from 'react-router-dom';
 import {Home, Login, Logout, Register, Settings, NotFound, Proto} from './routes'
 
+import CenteredWrapper from './components/CenteredWrapper';
 
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <Home />
@@ -42,9 +44,9 @@ const router = createBrowserRouter([
 
 const App = (): JSX.Element => {
   return (
-    <div className='container'>
+    <CenteredWrapper>
       <RouterProvider router={router} />
-    </div>
+    </CenteredWrapper>
   );
 };
 
